@@ -1,0 +1,96 @@
+{
+  "name": "erp-electron",
+  "version": "1.0.0",
+  "description": "ERP Offline Completo com Electron",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --publish never",
+    "build:win": "electron-builder --win --x64 --publish never",
+    "build:linux": "electron-builder --linux dir --publish never",
+    "build:mac": "echo 'MAC BUILD REQUIRES MACOS OR DOCKER - SKIPPING'"
+  },
+  "keywords": [
+    "erp",
+    "electron",
+    "offline"
+  ],
+  "author": "Julio Rufino",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "dependencies": {
+    "chart.js": "^4.4.1",
+    "jspdf": "^2.5.1",
+    "sql.js": "^1.9.0",
+    "xlsx": "^0.18.5"
+  },
+  "build": {
+    "appId": "com.erpelectron.app",
+    "productName": "ERP Pro",
+    "directories": {
+      "output": "dist",
+      "buildResources": "src/renderer/assets"
+    },
+    "files": [
+      "**/*",
+      "!node_modules/**/*",
+      "!dist/**/*",
+      "!.git/**/*"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "src/renderer/assets/icons/app.png",
+      "requestedExecutionLevel": "asInvoker"
+    },
+    "linux": {
+      "target": [
+        {
+          "target": "dir",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "category": "Office",
+      "icon": "src/renderer/assets/icons/"
+    },
+    "mac": {
+      "target": [
+        {
+          "target": "dir",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ],
+      "icon": "src/renderer/assets/icons/app.icns",
+      "hardenedRuntime": false,
+      "gatekeeperAssess": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "ERP Pro"
+    }
+  }
+}
